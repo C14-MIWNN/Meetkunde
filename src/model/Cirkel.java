@@ -10,15 +10,17 @@ public class Cirkel {
     private static final int DEFAULT_MIDDELPUNT_Y = 0;
     private static final String DEFAULT_KLEUR = "zwart";
 
-    public static int aantalCirkels = 0;
+    private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
 
-    public double straal;
-    public double middelpuntX;
-    public double middelpuntY;
-    public String kleur;
+    private static int aantalCirkels = 0;
+
+    private double straal;
+    private double middelpuntX;
+    private double middelpuntY;
+    private String kleur;
 
     public Cirkel(double straal, double middelpuntX, double middelpuntY, String kleur) {
-        this.straal = straal;
+        setStraal(straal);
         this.middelpuntX = middelpuntX;
         this.middelpuntY = middelpuntY;
         this.kleur = kleur;
@@ -27,30 +29,11 @@ public class Cirkel {
     }
 
     public Cirkel(double straal) {
-        this.straal = straal;
-        this.middelpuntX = DEFAULT_MIDDELPUNT_X;
-        this.middelpuntY = DEFAULT_MIDDELPUNT_Y;
-        this.kleur = DEFAULT_KLEUR;
-
-        aantalCirkels++;
-    }
-
-    public Cirkel(String kleur) {
-        this.straal = DEFAULT_STRAAL;
-        this.middelpuntX = DEFAULT_MIDDELPUNT_X;
-        this.middelpuntY = DEFAULT_MIDDELPUNT_Y;
-        this.kleur = kleur;
-
-        aantalCirkels++;
+        this(straal, DEFAULT_MIDDELPUNT_X, DEFAULT_MIDDELPUNT_Y, DEFAULT_KLEUR);
     }
 
     public Cirkel() {
-        this.straal = DEFAULT_STRAAL;
-        this.middelpuntX = DEFAULT_MIDDELPUNT_X;
-        this.middelpuntY = DEFAULT_MIDDELPUNT_Y;
-        this.kleur = DEFAULT_KLEUR;
-
-        aantalCirkels++;
+        this(DEFAULT_STRAAL);
     }
 
     public static String geefDefinitie() {
@@ -63,5 +46,25 @@ public class Cirkel {
 
     public double geefOppervlakte() {
         return Math.PI * straal * straal;
+    }
+
+    public String vertelOverGrootte() {
+        if (geefOppervlakte() < GRENSWAARDE_GROOT_FIGUUR) {
+            return "Zij zijn groot en ik ben klein, en dat is NIET EERLIJK!!!";
+        } else {
+            return "Ja, ja, ik ben groot, sorry dat ik besta.";
+        }
+    }
+
+    public static int getAantalCirkels() {
+        return aantalCirkels;
+    }
+
+    public void setStraal(double straal) {
+        if (straal <= 0) {
+            straal = DEFAULT_STRAAL;
+            System.out.println("Ja sorry, maar dat gaan we dus mooi niet doen...");
+        }
+        this.straal = straal;
     }
 }
