@@ -4,28 +4,24 @@ package model;
  * @author Vincent Velthuizen
  * Een cirkel
  */
-public class Cirkel {
+public class Cirkel extends Figuur {
     private static final int DEFAULT_STRAAL = 1;
-    private static final String DEFAULT_KLEUR = "zwart";
-
-    private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
-
-    private static int aantalCirkels = 0;
 
     private double straal;
-    private Punt middelpunt;
-    private String kleur;
+    private final Punt middelpunt;
 
     public Cirkel(double straal, Punt middelpunt, String kleur) {
+        super(kleur);
+
         setStraal(straal);
         this.middelpunt = middelpunt;
-        this.kleur = kleur;
-
-        aantalCirkels++;
     }
 
     public Cirkel(double straal) {
-        this(straal, new Punt(), DEFAULT_KLEUR);
+        super();
+
+        setStraal(straal);
+        this.middelpunt = new Punt();
     }
 
     public Cirkel() {
@@ -36,24 +32,14 @@ public class Cirkel {
         return "Een cirkel is een verzameling punten, die allemaal dezelfde afstand tot een middelpunt hebben.";
     }
 
+    @Override
     public double geefOmtrek() {
         return 2 * Math.PI * straal;
     }
 
+    @Override
     public double geefOppervlakte() {
         return Math.PI * straal * straal;
-    }
-
-    public String vertelOverGrootte() {
-        if (geefOppervlakte() < GRENSWAARDE_GROOT_FIGUUR) {
-            return "Zij zijn groot en ik ben klein, en dat is NIET EERLIJK!!!";
-        } else {
-            return "Ja, ja, ik ben groot, sorry dat ik besta.";
-        }
-    }
-
-    public static int getAantalCirkels() {
-        return aantalCirkels;
     }
 
     public void setStraal(double straal) {
@@ -62,5 +48,10 @@ public class Cirkel {
             System.out.println("Ja sorry, maar dat gaan we dus mooi niet doen...");
         }
         this.straal = straal;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\nStraal: %.2f\nMiddelpunt: %s", super.toString(), straal, middelpunt);
     }
 }
