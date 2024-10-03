@@ -6,8 +6,6 @@ package model;
  */
 public class Cirkel {
     private static final int DEFAULT_STRAAL = 1;
-    private static final int DEFAULT_MIDDELPUNT_X = 0;
-    private static final int DEFAULT_MIDDELPUNT_Y = 0;
     private static final String DEFAULT_KLEUR = "zwart";
 
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
@@ -15,21 +13,19 @@ public class Cirkel {
     private static int aantalCirkels = 0;
 
     private double straal;
-    private double middelpuntX;
-    private double middelpuntY;
+    private Punt middelpunt;
     private String kleur;
 
-    public Cirkel(double straal, double middelpuntX, double middelpuntY, String kleur) {
+    public Cirkel(double straal, Punt middelpunt, String kleur) {
         setStraal(straal);
-        this.middelpuntX = middelpuntX;
-        this.middelpuntY = middelpuntY;
+        this.middelpunt = middelpunt;
         this.kleur = kleur;
 
         aantalCirkels++;
     }
 
     public Cirkel(double straal) {
-        this(straal, DEFAULT_MIDDELPUNT_X, DEFAULT_MIDDELPUNT_Y, DEFAULT_KLEUR);
+        this(straal, new Punt(), DEFAULT_KLEUR);
     }
 
     public Cirkel() {
