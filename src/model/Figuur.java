@@ -4,7 +4,7 @@ package model;
  * @author Vincent Velthuizen
  * Algemene eigenschappen van een Figuur
  */
-public class Figuur {
+public abstract class Figuur {
     private static final String DEFAULT_KLEUR = "eggshell";
 
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
@@ -23,13 +23,9 @@ public class Figuur {
         return "een figuur is een verzameling punten";
     }
 
-    public double geefOmtrek() {
-        return 0;
-    }
+    public abstract double geefOmtrek();
 
-    public double geefOppervlakte() {
-        return 0;
-    }
+    public abstract double geefOppervlakte();
 
     public String vertelOverGrootte() {
         if (geefOppervlakte() < GRENSWAARDE_GROOT_FIGUUR) {

@@ -12,27 +12,20 @@ import model.Rechthoek;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Cirkel[] mijnCirkelArray = new Cirkel[3];
+        Figuur[] mijnFiguurArray = new Figuur[4];
 
-        mijnCirkelArray[0] = new Cirkel(3, new Punt(1, 4), "groen");
-        mijnCirkelArray[1] = new Cirkel();
-        mijnCirkelArray[2] = new Cirkel(6);
+        mijnFiguurArray[0] = new Cirkel(3, new Punt(1, 4), "groen");
+        mijnFiguurArray[1] = new Rechthoek();
+        mijnFiguurArray[2] = new Cirkel(6);
 
-        for (int cirkel = 0; cirkel < mijnCirkelArray.length; cirkel++) {
-            System.out.println(mijnCirkelArray[cirkel]);
-            System.out.println();
-        }
-
-        Rechthoek[] mijnRechthoekArray = new Rechthoek[3];
-
-        mijnRechthoekArray[0] = new Rechthoek();
-        mijnRechthoekArray[1] = new Rechthoek(4, 5);
-        mijnRechthoekArray[2] = new Rechthoek(12, 11, new Punt(4, 1), "geel");
-
-        for (int rechthoek = 0; rechthoek < mijnRechthoekArray.length; rechthoek++) {
-            System.out.println(mijnRechthoekArray[rechthoek]);
-            System.out.println();
+        for (int figuur = 0; figuur < mijnFiguurArray.length; figuur++) {
+            toonInformatie(mijnFiguurArray[figuur]);
         }
     }
 
+    public static void toonInformatie(Figuur figuur) {
+        System.out.println(figuur);
+        System.out.println(figuur.vertelOverGrootte());
+        System.out.println();
+    }
 }
