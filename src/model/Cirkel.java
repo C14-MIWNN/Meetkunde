@@ -42,6 +42,11 @@ public class Cirkel extends Figuur {
         return Math.PI * straal * straal;
     }
 
+    @Override
+    public boolean pastInOppervlak(double lengte, double breedte) {
+        return 2 * straal <= lengte && 2 * straal <= breedte;
+    }
+
     public void setStraal(double straal) {
         if (straal <= 0) {
             straal = DEFAULT_STRAAL;

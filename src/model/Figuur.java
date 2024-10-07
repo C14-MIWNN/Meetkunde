@@ -4,7 +4,7 @@ package model;
  * @author Vincent Velthuizen
  * Algemene eigenschappen van een Figuur
  */
-public abstract class Figuur {
+public abstract class Figuur implements Comparable<Figuur>, ToelaatbaarInOppervlak {
     private static final String DEFAULT_KLEUR = "eggshell";
 
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
@@ -32,6 +32,17 @@ public abstract class Figuur {
             return "Zij zijn groot en ik ben klein, en dat is NIET EERLIJK!!!";
         } else {
             return "Ja, ja, ik ben groot, sorry dat ik besta.";
+        }
+    }
+
+    @Override
+    public int compareTo(Figuur andereFiguur) {
+        if (this.geefOppervlakte() < andereFiguur.geefOppervlakte()) {
+            return -1;
+        } else if (this.geefOppervlakte() > andereFiguur.geefOppervlakte()) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 

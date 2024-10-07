@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * @author Vincent Velthuizen
@@ -18,7 +20,7 @@ public class Oppervlak {
     }
 
     public void voegFiguurToe(Figuur figuur) {
-        if (figuurPastAlsVormInOppervlak(figuur)) {
+        if (figuur.pastInOppervlak(lengte, breedte)) {
             mijnFiguren.add(figuur);
             System.out.println("Dit figuur is toegevoegd");
         } else {
@@ -26,28 +28,11 @@ public class Oppervlak {
         }
     }
 
-    private boolean figuurPastAlsVormInOppervlak(Figuur figuur) {
-        boolean past = false;
-
-        if (figuur instanceof Rechthoek) {
-            if (((Rechthoek) figuur).getLengte() <= lengte && ((Rechthoek) figuur).getBreedte() <= breedte) {
-                past = true;
-            }
-        } else if (figuur instanceof Cirkel
-                && ((Cirkel) figuur).getStraal() * 2 <= lengte
-                && ((Cirkel) figuur).getStraal() * 2 <= breedte) {
-            past = true;
-
-        }
-
-
-        return past;
-    }
-
     @Override
     public String toString() {
         StringBuilder returnString = new StringBuilder("Mijn oppervlak bevat:");
 
+        Collections.sort(mijnFiguren);
         for (Figuur figuur : mijnFiguren) {
             returnString.append("\n\n").append(figuur.toString());
         }
