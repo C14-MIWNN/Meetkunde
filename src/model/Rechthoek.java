@@ -50,4 +50,12 @@ public class Rechthoek extends Figuur {
     public String toString() {
         return String.format("%s\nLengte: %.2f\nBreedte: %.2f\nHoekpuntLinksBoven: %s", super.toString(), this.lengte, this.breedte, this.hoekpuntLinksBoven);
     }
+
+    public double getBreedte() {
+        return breedte;
+    }
+
+    public double getLengte() {
+        return lengte;
+    }
 }

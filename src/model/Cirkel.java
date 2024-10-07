@@ -54,4 +54,8 @@ public class Cirkel extends Figuur {
     public String toString() {
         return String.format("%s\nStraal: %.2f\nMiddelpunt: %s", super.toString(), straal, middelpunt);
     }
+
+    public double getStraal() {
+        return straal;
+    }
 }
