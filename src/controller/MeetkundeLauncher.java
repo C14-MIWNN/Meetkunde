@@ -4,6 +4,7 @@ import model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -16,7 +17,7 @@ import java.util.Scanner;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Oppervlak oppervlak = new Oppervlak(10, 5);
+        ArrayList<Rechthoek> rechthoeken = new ArrayList<>();
         try (Scanner rechthoekenScanner = new Scanner(new File("resources/rechthoeken.csv"))) {
 
             while (rechthoekenScanner.hasNextLine()) {
@@ -30,11 +31,20 @@ public class MeetkundeLauncher {
 
                 Punt punt = new Punt(xCoordinaat, yCoordinaat);
                 Rechthoek rechthoek = new Rechthoek(lengte, breedte, punt, kleur);
-                oppervlak.voegFiguurToe(rechthoek);
+                rechthoeken.add(rechthoek);
             }
 
         } catch (FileNotFoundException e) {
             System.out.println("Het opgegeven bestand is niet beschikbaar.");
+        }
+
+        try (PrintWriter printWriter = new PrintWriter("resources/Rechthoeken.txt")) {
+            for (Rechthoek rechthoek : rechthoeken) {
+                printWriter.println(rechthoek);
+                printWriter.println();
+            }
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("Het lukt niet om in het opgegeven bestand te gaan schrijven.");
         }
     }
 
