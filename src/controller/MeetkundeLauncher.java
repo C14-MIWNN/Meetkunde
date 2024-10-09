@@ -16,19 +16,21 @@ import java.util.Scanner;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
+        Oppervlak oppervlak = new Oppervlak(10, 5);
+        try (Scanner rechthoekenScanner = new Scanner(new File("resources/rechthoeken.csv"))) {
 
-        Oppervlak oppervlak = new Oppervlak(20, 30);
-        try (Scanner stralenScanner = new Scanner(new File("resources/stralen.txt"))) {
+            while (rechthoekenScanner.hasNextLine()) {
+                String[] rechthoekElementen = rechthoekenScanner.nextLine().split(",");
 
-            while (stralenScanner.hasNextDouble()) {
-                double straal = stralenScanner.nextDouble();
+                double lengte = Double.parseDouble(rechthoekElementen[0]);
+                double breedte = Double.parseDouble(rechthoekElementen[1]);
+                double xCoordinaat = Double.parseDouble(rechthoekElementen[2]);
+                double yCoordinaat = Double.parseDouble(rechthoekElementen[3]);
+                String kleur = rechthoekElementen[4];
 
-                try {
-                    oppervlak.voegFiguurToe(new Cirkel(straal));
-                } catch (IllegalArgumentException illegalArgumentException) {
-                    System.out.println(illegalArgumentException.getMessage());
-                    System.out.println("De betrokken straal wordt overgeslagen.");
-                }
+                Punt punt = new Punt(xCoordinaat, yCoordinaat);
+                Rechthoek rechthoek = new Rechthoek(lengte, breedte, punt, kleur);
+                oppervlak.voegFiguurToe(rechthoek);
             }
 
         } catch (FileNotFoundException e) {
