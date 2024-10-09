@@ -49,8 +49,7 @@ public class Cirkel extends Figuur {
 
     public void setStraal(double straal) {
         if (straal <= 0) {
-            straal = DEFAULT_STRAAL;
-            System.out.println("Ja sorry, maar dat gaan we dus mooi niet doen...");
+            throw new IllegalArgumentException("De straal moet positief zijn.");
         }
         this.straal = straal;
     }

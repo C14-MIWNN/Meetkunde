@@ -4,6 +4,8 @@ import model.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * @author Vincent Velthuizen
@@ -12,14 +14,26 @@ import java.util.ArrayList;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Oppervlak oppervlak = new Oppervlak(20, 30);
-        oppervlak.voegFiguurToe(new Cirkel());
-        oppervlak.voegFiguurToe(new Rechthoek());
-        oppervlak.voegFiguurToe(new Cirkel(11));
-        oppervlak.voegFiguurToe(new Rechthoek(30, 10));
-        oppervlak.voegFiguurToe(new Cirkel(3));
+        Scanner toetsenbord = new Scanner(System.in);
+        Cirkel cirkel = null;
 
-        System.out.println(oppervlak);
+        while (cirkel == null) {
+            System.out.print("Geef de straal van de cirkel: ");
+
+            try {
+                double straal = toetsenbord.nextDouble();
+                cirkel = new Cirkel(straal);
+            } catch (IllegalArgumentException illegalArgumentException)  {
+                System.err.println(illegalArgumentException.getMessage());
+            } catch (InputMismatchException inputMismatchException) {
+                toetsenbord.nextLine();
+                System.err.println("Hoe dom kun je zijn? Wat kun je wel? Wat is dit!?!?!?! ");
+            } finally {
+                System.out.println("Of het nu lukt of niet je krijgt dit te zien");
+            }
+        }
+
+        System.out.println(cirkel);
     }
 
     public static void toonInformatie(Figuur figuur) {
