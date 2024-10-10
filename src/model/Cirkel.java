@@ -62,4 +62,8 @@ public class Cirkel extends Figuur {
     public double getStraal() {
         return straal;
     }
+
+    public Punt getMiddelpunt() {
+        return middelpunt;
+    }
 }

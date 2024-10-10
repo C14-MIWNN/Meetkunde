@@ -50,4 +50,8 @@ public abstract class Figuur implements Comparable<Figuur>, ToelaatbaarInOppervl
     public String toString() {
         return String.format("Kleur: %s\nOmtrek: %.2f\nOppervlakte: %.2f", kleur, geefOmtrek(), geefOppervlakte());
     }
+
+    public String getKleur() {
+        return kleur;
+    }
 }

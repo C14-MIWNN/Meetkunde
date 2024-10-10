@@ -24,4 +24,12 @@ public class Punt {
     public String toString() {
         return String.format("(%.2f; %.2f)", xCoordinaat, yCoordinaat);
     }
+
+    public double getxCoordinaat() {
+        return xCoordinaat;
+    }
+
+    public double getyCoordinaat() {
+        return yCoordinaat;
+    }
 }
